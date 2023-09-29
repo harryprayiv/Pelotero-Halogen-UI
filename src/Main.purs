@@ -1,13 +1,10 @@
-module Main where
+module Drafting.Main (drafting) where
 
-import Prelude
-
-import App.Button as Button
+import Prelude (($), Unit)
 import Effect (Effect)
-import Halogen.Aff as HA
-import Halogen.VDom.Driver (runUI)
+import Console (render, form)
 
-main :: Effect Unit
-main = HA.runHalogenAff do
-  body <- HA.awaitBody
-  runUI Button.component unit body
+foreign import setHTML :: String -> Effect Unit
+
+drafting :: Effect Unit
+drafting = setHTML $ render form

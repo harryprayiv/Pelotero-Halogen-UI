@@ -64,6 +64,16 @@
             console
             effect
             halogen
+            datetime
+            arrays
+            either
+            node-fs
+            node-buffer
+            exceptions
+            partial
+            psci-support
+            quickcheck
+            aff
           ];
 
           foreign.Main.node_modules = npmlock2nix.node_modules {src = ./.;} + /node_modules;
