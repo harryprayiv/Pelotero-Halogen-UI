@@ -152,7 +152,7 @@
             echo .
             echo ..
             echo ...
-            purs-watch
+            purs-nix compile
           '';
         };
       apps = {
