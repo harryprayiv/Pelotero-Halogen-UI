@@ -2,7 +2,7 @@ module Drafting.Main (drafting) where
 
 import Prelude (($), Unit)
 import Effect (Effect)
-import Console (render, form)
+import Drafting (render, form)
 
 foreign import setHTML :: String -> Effect Unit
 
