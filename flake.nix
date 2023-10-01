@@ -165,6 +165,8 @@
 
   # --- Flake Local Nix Configuration ----------------------------
   nixConfig = {
+    extra-experimental-features = ["nix-command flakes" "ca-derivations"];
+    allow-import-from-derivation = "true";
     # This sets the flake to use nix cache.
     # Nix should ask for permission before using it,
     # but remove it here if you do not want it to.
