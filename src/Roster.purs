@@ -37,27 +37,6 @@ data Roster = Roster
   , officialPlayers :: Map String Player
   }
 
--- instance encodeJsonPlayer :: EncodeJson Player where
---   encodeJson player = 
---     encodeJson
---       { playerId: player.playerId
---       , nameSlug: player.nameSlug
---       , useName: player.useName
---       , useLastName: player.useLastName
---       , currentTeam: player.currentTeam
---       , primaryPosition: player.primaryPosition
---       , active: player.active
---       , batSide: player.batSide
---       , pitchHand: player.pitchHand
---       }
-
--- instance encodeJsonRoster :: EncodeJson Roster where
---   encodeJson (Roster roster) =
---     encodeJson
---       { checksum: roster.checksum
---       , dataPulled: roster.dataPulled
---       , officialPlayers: encodeJson roster.officialPlayers
---       }
 instance encodeJsonPlayer :: EncodeJson Player where
   encodeJson (Player player) = 
     EncodeJson.object

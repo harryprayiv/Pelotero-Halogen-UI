@@ -45,10 +45,11 @@
           # Project dir (src, test)
           srcs = [
             "src/**/*.purs"
+            "src/test/**/*.purs"
           ];
-          # test = "src/purescript/test/**/*.purs";
+          test = "src/test/**/*.purs";
 
-          # test-module = "Test.Main";
+          test-module = "Test.Main";
           # Dependencies
           dependencies = with purs-nix.ps-pkgs; [
             prelude
