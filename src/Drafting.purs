@@ -8,7 +8,7 @@ import Data.Semigroup ((<>))
 import Node.FS.Aff as FS
 import Data.Argonaut (Json, parseJson)
 import Effect.Aff (Aff)
--- import Roster bew
+-- import Roster newer
 
 type InputType = String
 type Label = String
