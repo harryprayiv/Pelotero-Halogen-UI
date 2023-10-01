@@ -2,17 +2,12 @@
   inputs = {
     #Generic Stuff
     nixpkgs.follows = "purs-nix/nixpkgs";
-    systems.url = "github:nix-systems/default";
+    # systems.url = "github:nix-systems/default";
     utils.url = "github:ursi/flake-utils";
 
     # Purescript stuff
     purs-nix.url = "github:purs-nix/purs-nix/ps-0.15";
     ps-tools.follows = "purs-nix/ps-tools";
-
-    # Haskell stuff
-    # haskell-nix.url = "github:input-output-hk/haskell.nix";
-
-    # *2Nix
 
     npmlock2nix = {
       flake = false;
@@ -31,7 +26,6 @@
     systems = [
       "x86_64-linux"
       "x86_64-darwin"
-      "aarch64-darwin"
     ];
   in
     utils.apply-systems
@@ -120,8 +114,6 @@
             purs-nix.purescript
             nodejs
 
-            # yarn2nix
-
             vite
             purs-watch
             purs-dev
@@ -135,19 +127,17 @@
             # You can choose pnpm, yarn, or none (npm).
             nodePackages.pnpm
             nodePackages.live-server
-            # nodePackages.typescript
-            # nodePackages.typescript-language-server
           ];
           shellHook = ''
             export NIX_SHELL_NAME="pelotero_Front_End"
             echo "Welcome to the development shell!"
             echo
             echo opening VSCodium for this project....
-            codium .
+            # codium .
             echo .
             echo ..
             echo ...
-            purs-nix compile
+            # purs-nix compile
           '';
         };
       apps = {
@@ -155,11 +145,6 @@
           type = "app";
           program = "${live-server}/bin/live-server";
         };
-
-        #   # typescript = {
-        #   #   type = "app";
-        #   #   program = "${typescript}/bin/typescript";
-        #   # };
       };
     });
 
