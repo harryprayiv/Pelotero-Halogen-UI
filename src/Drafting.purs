@@ -8,7 +8,7 @@ import Data.Semigroup ((<>))
 import Node.FS.Aff as FS
 import Data.Argonaut (Json, parseJson)
 import Effect.Aff (Aff)
-import Roster
+-- import Roster
 
 type InputType = String
 type Label = String
@@ -18,7 +18,7 @@ type Name = String
 type Value = String
 type HTML = String
 
-type RosterRow = { field1 :: String, field2 :: Int, field3 :: Boolean }
+type RosterRow = { tag1 :: String, tag2 :: Int, tag3 :: Boolean }
 
 data Widget = Input InputType (Maybe Name) Label | Form Method Action
 data WidgetNode = WidgetNode Widget (Array WidgetNode)
