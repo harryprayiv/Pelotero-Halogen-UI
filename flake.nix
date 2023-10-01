@@ -2,17 +2,12 @@
   inputs = {
     #Generic Stuff
     nixpkgs.follows = "purs-nix/nixpkgs";
-    systems.url = "github:nix-systems/default";
+    # systems.url = "github:nix-systems/default";
     utils.url = "github:ursi/flake-utils";
 
     # Purescript stuff
     purs-nix.url = "github:purs-nix/purs-nix/ps-0.15";
     ps-tools.follows = "purs-nix/ps-tools";
-
-    # Haskell stuff
-    # haskell-nix.url = "github:input-output-hk/haskell.nix";
-
-    # *2Nix
 
     npmlock2nix = {
       flake = false;
@@ -29,25 +24,20 @@
   } @ inputs: let
     name = "pelotero-frontend";
     systems = [
-      "aarch64-darwin"
-      "x86_64-darwin"
       "x86_64-linux"
+      "x86_64-darwin"
     ];
-    pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    npmlock2nix = (import inputs.npmlock2nix {inherit pkgs;}).v1;
   in
     utils.apply-systems
     {
       inherit inputs systems;
-
-      # overlays = [inputs.haskell-nix.overlay];
     }
-    ({
-      system,
-      pkgs,
-      ...
-    }: let
+    ({system, ...}: let
+      pkgs = nixpkgs.legacyPackages.${system};
+      npmlock2nix = (import inputs.npmlock2nix {inherit pkgs;}).v1;
       purs-nix = inputs.purs-nix {inherit system;};
+      ps-tools = inputs.ps-tools.legacyPackages.${system};
+      ps-command = ps.command {};
       ps =
         purs-nix.purs
         {
@@ -88,23 +78,11 @@
           foreign.Main.node_modules = npmlock2nix.node_modules {src = ./.;} + /node_modules;
         };
 
-      ps-tools = inputs.ps-tools.legacyPackages.${system};
-      ps-command = ps.command {};
-      pkgs = import nixpkgs {
-        inherit system;
-      };
-
       purs-watch = pkgs.writeShellApplication {
         name = "purs-watch";
         runtimeInputs = with pkgs; [entr ps-command];
         text = "find src | entr -s 'echo building && purs-nix compile'";
       };
-
-      # purs-test = pkgs.writeShellApplication {
-      #   name = "purs-watch";
-      #   runtimeInputs = with pkgs; [entr ps-command];
-      #   text = "find src/purescript/test | entr -s 'echo running tests && purs-nix test'";
-      # };
 
       vite = pkgs.writeShellApplication {
         name = "vite";
@@ -124,7 +102,6 @@
       };
 
       live-server = pkgs.nodePackages.live-server;
-      # packages.default = ps.output {};
 
       packages = with ps; {
         default = ps.modules.Main.bundle {};
@@ -144,8 +121,6 @@
             purs-nix.purescript
             nodejs
 
-            # yarn2nix
-
             vite
             purs-watch
             purs-dev
@@ -159,19 +134,17 @@
             # You can choose pnpm, yarn, or none (npm).
             nodePackages.pnpm
             nodePackages.live-server
-            # nodePackages.typescript
-            # nodePackages.typescript-language-server
           ];
           shellHook = ''
             export NIX_SHELL_NAME="pelotero_Front_End"
             echo "Welcome to the development shell!"
             echo
             echo opening VSCodium for this project....
-            codium .
+            # codium .
             echo .
             echo ..
             echo ...
-            purs-nix compile
+            # purs-nix compile
           '';
         };
       apps = {
@@ -179,16 +152,13 @@
           type = "app";
           program = "${live-server}/bin/live-server";
         };
-
-        #   # typescript = {
-        #   #   type = "app";
-        #   #   program = "${typescript}/bin/typescript";
-        #   # };
       };
     });
 
   # --- Flake Local Nix Configuration ----------------------------
   nixConfig = {
+    extra-experimental-features = ["nix-command flakes" "ca-derivations"];
+    allow-import-from-derivation = "true";
     # This sets the flake to use nix cache.
     # Nix should ask for permission before using it,
     # but remove it here if you do not want it to.
