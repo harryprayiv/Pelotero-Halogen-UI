@@ -122,6 +122,7 @@
             purs-nix.esbuild
             purs-nix.purescript
             nodejs
+            spago
 
             vite
             purs-watch
