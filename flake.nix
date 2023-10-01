@@ -29,25 +29,21 @@
   } @ inputs: let
     name = "pelotero-halogen";
     systems = [
-      "aarch64-darwin"
-      "x86_64-darwin"
       "x86_64-linux"
+      "x86_64-darwin"
+      "aarch64-darwin"
     ];
-    pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    npmlock2nix = (import inputs.npmlock2nix {inherit pkgs;}).v1;
   in
     utils.apply-systems
     {
       inherit inputs systems;
-
-      # overlays = [inputs.haskell-nix.overlay];
     }
-    ({
-      system,
-      pkgs,
-      ...
-    }: let
+    ({system, ...}: let
+      pkgs = nixpkgs.legacyPackages.${system};
+      npmlock2nix = (import inputs.npmlock2nix {inherit pkgs;}).v1;
       purs-nix = inputs.purs-nix {inherit system;};
+      ps-tools = inputs.ps-tools.legacyPackages.${system};
+      ps-command = ps.command {};
       ps =
         purs-nix.purs
         {
@@ -81,23 +77,11 @@
           foreign.Main.node_modules = npmlock2nix.node_modules {src = ./.;} + /node_modules;
         };
 
-      ps-tools = inputs.ps-tools.legacyPackages.${system};
-      ps-command = ps.command {};
-      pkgs = import nixpkgs {
-        inherit system;
-      };
-
       purs-watch = pkgs.writeShellApplication {
         name = "purs-watch";
         runtimeInputs = with pkgs; [entr ps-command];
         text = "find src | entr -s 'echo building && purs-nix compile'";
       };
-
-      # purs-test = pkgs.writeShellApplication {
-      #   name = "purs-watch";
-      #   runtimeInputs = with pkgs; [entr ps-command];
-      #   text = "find src/purescript/test | entr -s 'echo running tests && purs-nix test'";
-      # };
 
       vite = pkgs.writeShellApplication {
         name = "vite";
@@ -117,7 +101,6 @@
       };
 
       live-server = pkgs.nodePackages.live-server;
-      # packages.default = ps.output {};
 
       packages = with ps; {
         default = ps.modules.Main.bundle {};
