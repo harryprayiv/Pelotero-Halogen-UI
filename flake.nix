@@ -22,7 +22,7 @@
     systems,
     ...
   } @ inputs: let
-    name = "pelotero-halogen";
+    name = "pelotero-frontend";
     systems = [
       "x86_64-linux"
       "x86_64-darwin"
