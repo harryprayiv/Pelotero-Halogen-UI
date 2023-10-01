@@ -27,7 +27,7 @@
     systems,
     ...
   } @ inputs: let
-    name = "pelotero-halogen";
+    name = "pelotero-frontend";
     systems = [
       "aarch64-darwin"
       "x86_64-darwin"
@@ -76,6 +76,13 @@
             quickcheck
             aff
             argonaut
+            argonaut-codecs
+            ordered-collections
+            codec-argonaut
+            argonaut-core
+            maybe
+            record
+            tuples
           ];
 
           foreign.Main.node_modules = npmlock2nix.node_modules {src = ./.;} + /node_modules;

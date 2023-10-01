@@ -10,8 +10,8 @@ When creating a new Spago project, you can use
 `spago init --no-comments` or `spago init -C`
 to generate this file without the comments in this block.
 -}
-{ name = "my-project"
-, dependencies = [ "prelude" , "console" , "datetime" , "arrays" , "effect" , "either" , "node-fs" , "node-buffer" , "exceptions" , "partial" , "prelude" , "psci-support" , "quickcheck" , "aff" ]
+{ name = "pelotero-frontend"
+, dependencies = [ "prelude" , "console" , "datetime" , "tuples" , "arrays" , "effect" , "maybe" , "ordered-collections" , "record" , "either" , "node-fs" , "node-buffer" , "exceptions" , "partial" , "prelude" , "psci-support" , "quickcheck" , "aff" , "argonaut" , "argonaut-core" , "argonaut-codecs", "codec-argonaut" ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]
 }
