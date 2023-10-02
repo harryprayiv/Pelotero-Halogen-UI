@@ -32,7 +32,7 @@ instance encodeJsonTeams :: EncodeJson Teams where
 instance decodeJsonTeams :: DecodeJson Teams where
   decodeJson = genericDecodeJson
 
-data TeamData = TeamData { players :: StrMap Player }
+data TeamData = TeamData { players :: Array Player }
 
 derive instance genericTeamData :: Generic TeamData _
 
@@ -42,13 +42,12 @@ instance encodeJsonTeamData :: EncodeJson TeamData where
 instance decodeJsonTeamData :: DecodeJson TeamData where
   decodeJson = genericDecodeJson
 
--- ... And so on for the rest of the types ...
-
 data Player = Player
   { person :: Person
   , status :: Status
   , seasonStats :: PlayerSeasonStats
   }
+
 
 data BattingTotals = BattingTotals
   { bat_T_gamesPlayed :: Maybe Int

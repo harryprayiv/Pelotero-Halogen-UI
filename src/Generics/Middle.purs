@@ -17,7 +17,7 @@ type Text = String
 data JsonPlayerData = JsonPlayerData
   { playerId :: Text
   , fullName :: Text
-  , stats    :: StrMap JsonStatsData  -- not even a thing anymore
+  , stats    :: Array JsonStatsData  -- not even a thing anymore
   }
 
 data JsonStatsData = JsonStatsData

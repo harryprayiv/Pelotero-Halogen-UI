@@ -11,7 +11,7 @@ import Data.Maybe (Maybe)
 data Roster = Roster
   { checksum :: String
   , dataPulled :: String
-  , officialPlayers :: Player -- TODO: this was StrMap Player but that is deprecated now!! 
+  , officialPlayers :: Array Player -- TODO: this was StrMap Player but that is deprecated now!! 
   }
 
 data Player = Player
