@@ -11,7 +11,30 @@ When creating a new Spago project, you can use
 to generate this file without the comments in this block.
 -}
 { name = "pelotero-frontend"
-, dependencies = [ "prelude" , "console" , "datetime" , "tuples" , "arrays" , "effect" , "maybe" , "ordered-collections" , "record" , "either" , "node-fs" , "node-buffer" , "exceptions" , "partial" , "prelude" , "psci-support" , "quickcheck" , "aff" , "argonaut" , "argonaut-core" , "argonaut-codecs", "codec-argonaut" ]
+, dependencies =
+  [ "aff"
+  , "argonaut"
+  , "argonaut-codecs"
+  , "argonaut-core"
+  , "argonaut-generic"
+  , "arrays"
+  , "codec-argonaut"
+  , "console"
+  , "datetime"
+  , "effect"
+  , "either"
+  , "exceptions"
+  , "maybe"
+  , "node-buffer"
+  , "node-fs"
+  , "ordered-collections"
+  , "partial"
+  , "prelude"
+  , "psci-support"
+  , "quickcheck"
+  , "record"
+  , "tuples"
+  ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]
 }

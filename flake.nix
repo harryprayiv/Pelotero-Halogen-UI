@@ -54,27 +54,33 @@
           dependencies = with purs-nix.ps-pkgs; [
             prelude
             console
-            effect
-            halogen
             datetime
-            arrays
+            psci-support
+
+            aff
+            effect
+            exceptions
+            maybe
             either
+            partial
+            tuples
+            arrays
+            record
+            ordered-collections
+            quickcheck
+
             node-fs
             node-fs-aff
             node-buffer
-            exceptions
-            partial
-            psci-support
-            quickcheck
-            aff
+
+            #argonaut stuff
+            argonaut-core
+            argonaut-generic
             argonaut
             argonaut-codecs
-            ordered-collections
-            codec-argonaut
-            argonaut-core
-            maybe
-            record
-            tuples
+
+            # halogen stuff
+            halogen
           ];
 
           foreign.Main.node_modules = npmlock2nix.node_modules {src = ./.;} + /node_modules;
