@@ -1,4 +1,4 @@
-module Roster where
+module OfficialRoster where
 
 -- import Prelude
 import Data.Argonaut.Decode.Class (class DecodeJson)
@@ -11,7 +11,7 @@ import Data.Maybe (Maybe)
 data Roster = Roster
   { checksum :: String
   , dataPulled :: String
-  , officialPlayers :: Player
+  , officialPlayers :: Player -- TODO: this was StrMap Player but that is deprecated now!! 
   }
 
 data Player = Player

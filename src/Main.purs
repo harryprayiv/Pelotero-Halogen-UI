@@ -1,10 +1,11 @@
-module Drafting.Main (drafting) where
+module Main where
 
-import Prelude (($), Unit)
+import Prelude
+
 import Effect (Effect)
-import Drafting (render, form)
+import Effect.Class.Console (log)
 
-foreign import setHTML :: String -> Effect Unit
-
-drafting :: Effect Unit
-drafting = setHTML $ render form
+main :: Effect Unit
+main = do
+  log "🍝"
+  log "You should add some tests."
