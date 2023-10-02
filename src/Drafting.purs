@@ -5,10 +5,9 @@ import Data.Array (foldl)
 import Data.Maybe (Maybe (Just, Nothing), maybe)
 import Data.Semigroup ((<>))
 
-import Node.FS.Aff as FS
-import Data.Argonaut (Json, parseJson)
-import Effect.Aff (Aff)
-import Roster
+-- import Node.FS.Aff as FS
+-- import Data.Argonaut (Json, parseJson)
+-- import Effect.Aff (Aff)
 
 type InputType = String
 type Label = String
@@ -58,21 +57,21 @@ render (WidgetNode el children) = let ct = foldl (foldAcc render) "" children in
 form :: WidgetNode
 form = WidgetNode formWidget [WidgetNode address [], WidgetNode submit []]
 
--- loadAndProcessRoster: function takes the file path of the JSON file as an argument.
--- FS.readTextFile FS.utf8 filePath reads the file contents.
---parseJson fileContent attempts to parse the file content into a Json object.
---decodeJson json :: Maybe (Array RosterRow) attempts to decode the Json object into an array of RosterRow objects.
-loadAndProcessRoster :: String -> Aff Unit
-loadAndProcessRoster filePath = do
-  fileContent <- FS.readTextFile FS.utf8 filePath
-  case jsonParser fileContent of
-    Right json -> case decodeJson json of
-      Right roster -> processRoster roster
-      Left err -> logShow $ "Error decoding JSON: " <> err
-    Left err -> logShow $ "Error parsing JSON: " <> err
+-- -- loadAndProcessRoster: function takes the file path of the JSON file as an argument.
+-- -- FS.readTextFile FS.utf8 filePath reads the file contents.
+-- --parseJson fileContent attempts to parse the file content into a Json object.
+-- --decodeJson json :: Maybe (Array RosterRow) attempts to decode the Json object into an array of RosterRow objects.
+-- loadAndProcessRoster :: String -> Aff Unit
+-- loadAndProcessRoster filePath = do
+--   fileContent <- FS.readTextFile FS.utf8 filePath
+--   case jsonParser fileContent of
+--     Right json -> case decodeJson json of
+--       Right roster -> processRoster roster
+--       Left err -> logShow $ "Error decoding JSON: " <> err
+--     Left err -> logShow $ "Error parsing JSON: " <> err
 
---processRoster rows is a separate function where you would process the roster data as needed.
--- processRoster :: Roster -> Aff Unit
--- processRoster roster = do
---   -- process the roster data ...
---   pure unit
+-- --processRoster rows is a separate function where you would process the roster data as needed.
+-- -- processRoster :: Roster -> Aff Unit
+-- -- processRoster roster = do
+-- --   -- process the roster data ...
+-- --   pure unit

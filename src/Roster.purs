@@ -12,7 +12,7 @@ import Data.Maybe (Maybe)
 data Roster = Roster
   { checksum :: String
   , dataPulled :: String
-  , officialPlayers :: StrMap Player
+  , officialPlayers :: Player
   }
 
 data Player = Player
