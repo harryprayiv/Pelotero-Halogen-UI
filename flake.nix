@@ -13,6 +13,11 @@
       flake = false;
       url = "github:nix-community/npmlock2nix";
     };
+
+    foreign-generic = {
+      url = "github:paf31/purescript-foreign-generic";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -35,10 +40,29 @@
     }
     ({system, ...}: let
       pkgs = nixpkgs.legacyPackages.${system};
-      npmlock2nix = (import inputs.npmlock2nix {inherit pkgs;}).v1;
+      npmlock2nix = import inputs.npmlock2nix {inherit pkgs;};
+      node_modules = npmlock2nix.v2.node_modules {src = ./.;} + /node_modules;
       purs-nix = inputs.purs-nix {inherit system;};
       ps-tools = inputs.ps-tools.legacyPackages.${system};
       ps-command = ps.command {};
+      foreign-generic = purs-nix.build {
+        name = "foreign-generic";
+        src.path = inputs.foreign-generic;
+        info.dependencies = with purs-nix.ps-pkgs; [
+          effect
+          node-buffer
+          prelude
+          exceptions
+          foreign
+          foreign-object
+          generics-rep
+          identity
+          ordered-collections
+          proxy
+          record
+        ];
+        foreign."Foreign.Generic" = {inherit node_modules;};
+      };
       ps =
         purs-nix.purs
         {
@@ -75,8 +99,8 @@
             maybe
             record
             tuples
+            foreign-generic
           ];
-
           foreign.Main.node_modules = npmlock2nix.node_modules {src = ./.;} + /node_modules;
         };
 
