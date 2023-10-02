@@ -8,3 +8,7 @@
 /.purs*
 /.psa*
 /.spago
+*appData/stats*
+*appData/rosters*
+*appData/config*
+*appData/points*
