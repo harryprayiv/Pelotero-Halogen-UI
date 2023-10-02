@@ -55,11 +55,8 @@
           exceptions
           foreign
           foreign-object
-          generics-rep
           identity
           ordered-collections
-          proxy
-          record
         ];
         foreign."Foreign.Generic" = {inherit node_modules;};
       };
