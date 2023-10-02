@@ -101,6 +101,22 @@
         "type": "github"
       }
     },
+    "foreign-generic": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1616097623,
+        "narHash": "sha256-nPVGRuWzSG61Uh9hZ0of7aXSuWdQbDRQMfELyJ59K4k=",
+        "owner": "paf31",
+        "repo": "purescript-foreign-generic",
+        "rev": "3cddc5fe3e87e426e0f719465ba60b9df4c0c72d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "paf31",
+        "repo": "purescript-foreign-generic",
+        "type": "github"
+      }
+    },
     "get-flake": {
       "locked": {
         "lastModified": 1644686428,
@@ -321,6 +337,7 @@
     },
     "root": {
       "inputs": {
+        "foreign-generic": "foreign-generic",
         "nixpkgs": [
           "purs-nix",
           "nixpkgs"
