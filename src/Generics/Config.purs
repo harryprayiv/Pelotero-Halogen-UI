@@ -97,8 +97,8 @@ derive instance genericDraftRoster :: Generic DraftRoster _
 derive instance genericDraftParameters :: Generic DraftParameters _
 
 -- JSON instances using Generics
-instance encodeJsonConfiguration :: EncodeJson Configuration where
-  encodeJson = genericEncodeJson
+-- instance encodeJsonConfiguration :: EncodeJson Configuration where
+--   encodeJson = genericEncodeJson
 
-instance decodeJsonConfiguration :: DecodeJson Configuration where
-  decodeJson = genericDecodeJson
+-- instance decodeJsonConfiguration :: DecodeJson Configuration where
+--   decodeJson = genericDecodeJson

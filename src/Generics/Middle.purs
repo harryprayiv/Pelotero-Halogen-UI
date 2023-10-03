@@ -112,14 +112,14 @@ derive instance genericJsonPlayerData :: Generic JsonPlayerData _
 derive instance genericJsonStatsData :: Generic JsonStatsData _
 
 -- Encode/Decode instances:
-instance encodeJsonJsonPlayerData :: EncodeJson JsonPlayerData where
-  encodeJson = genericEncodeJson
+-- instance encodeJsonJsonPlayerData :: EncodeJson JsonPlayerData where
+--   encodeJson = genericEncodeJson
 
-instance decodeJsonJsonPlayerData :: DecodeJson JsonPlayerData where
-  decodeJson = genericDecodeJson
+-- instance decodeJsonJsonPlayerData :: DecodeJson JsonPlayerData where
+--   decodeJson = genericDecodeJson
 
-instance encodeJsonJsonStatsData :: EncodeJson JsonStatsData where
-  encodeJson = genericEncodeJson
+-- instance encodeJsonJsonStatsData :: EncodeJson JsonStatsData where
+--   encodeJson = genericEncodeJson
 
-instance decodeJsonJsonStatsData :: DecodeJson JsonStatsData where
-  decodeJson = genericDecodeJson
+-- instance decodeJsonJsonStatsData :: DecodeJson JsonStatsData where
+--   decodeJson = genericDecodeJson

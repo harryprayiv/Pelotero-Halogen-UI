@@ -16,31 +16,31 @@ data SeasonData = SeasonData { teams :: Teams }
 
 derive instance genericSeasonData :: Generic SeasonData _
 
-instance encodeJsonSeasonData :: EncodeJson SeasonData where
-  encodeJson = genericEncodeJson
+-- instance encodeJsonSeasonData :: EncodeJson SeasonData where
+--   encodeJson = genericEncodeJson
 
-instance decodeJsonSeasonData :: DecodeJson SeasonData where
-  decodeJson = genericDecodeJson
+-- instance decodeJsonSeasonData :: DecodeJson SeasonData where
+--   decodeJson = genericDecodeJson
 
 data Teams = Teams { away :: TeamData, home :: TeamData }
 
 derive instance genericTeams :: Generic Teams _
 
-instance encodeJsonTeams :: EncodeJson Teams where
-  encodeJson = genericEncodeJson
+-- instance encodeJsonTeams :: EncodeJson Teams where
+--   encodeJson = genericEncodeJson
 
-instance decodeJsonTeams :: DecodeJson Teams where
-  decodeJson = genericDecodeJson
+-- instance decodeJsonTeams :: DecodeJson Teams where
+--   decodeJson = genericDecodeJson
 
 data TeamData = TeamData { players :: Array Player }
 
 derive instance genericTeamData :: Generic TeamData _
 
-instance encodeJsonTeamData :: EncodeJson TeamData where
-  encodeJson = genericEncodeJson
+-- instance encodeJsonTeamData :: EncodeJson TeamData where
+--   encodeJson = genericEncodeJson
 
-instance decodeJsonTeamData :: DecodeJson TeamData where
-  decodeJson = genericDecodeJson
+-- instance decodeJsonTeamData :: DecodeJson TeamData where
+--   decodeJson = genericDecodeJson
 
 data Player = Player
   { person :: Person
@@ -48,6 +48,17 @@ data Player = Player
   , seasonStats :: PlayerSeasonStats
   }
 
+data PlayerSeasonStats = PlayerSeasonStats 
+  { batting :: Maybe BattingTotals
+  , pitching :: Maybe PitchingTotals}
+
+
+data Status = Status 
+  {  status_code :: String}
+
+data Person = Person 
+  { personId :: Int
+  , fullName :: String}
 
 data BattingTotals = BattingTotals
   { bat_T_gamesPlayed :: Maybe Int
