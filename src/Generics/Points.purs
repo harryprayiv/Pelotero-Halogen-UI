@@ -1,4 +1,4 @@
-module DayStats where
+module Points where
 
 -- -- import Prelude
 -- import Data.Argonaut.Decode.Class (class DecodeJson)
