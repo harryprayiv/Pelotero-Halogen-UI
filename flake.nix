@@ -129,6 +129,7 @@
             purs-nix.purescript
             nodejs
             spago
+            haskellPackages.fourmolu
 
             vite
             purs-watch
